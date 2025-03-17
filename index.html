@@ -63,24 +63,96 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .tab {
-            padding: 10px 20px;
-            background-color: #888; /* Couleur des onglets */
-            border-radius: 20px; /* Onglets arrondis */
-            color: white;
-            cursor: pointer;
-            margin: 5px;
-            transition: background 0.3s, transform 0.3s; /* Effets de transition */
-        }
-        .tab:hover, .tab.active {
-            background-color: #444; /* Couleur de survol des onglets */
-            transform: scale(1.05); /* Légère mise en valeur lors du survol */
-        }
+  /* Styles généraux pour les onglets */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Permet aux onglets de se placer sur plusieurs lignes si l'espace est trop petit */
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #ccc; /* Couleur de fond plus douce et discrète */
+    border-radius: 20px;
+    color: #333; /* Couleur du texte plus neutre */
+    cursor: pointer;
+    margin: 6px;
+    transition: background 0.3s, transform 0.3s, opacity 0.3s;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* Effet de survol et d'activation */
+.tab:hover, .tab.active {
+    background-color: #aaa;
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Media query pour les petits écrans (tablettes et téléphones) */
+@media (max-width: 768px) {
+    /* Empile les onglets verticalement et les cache par défaut pour ne montrer qu'un menu déroulant */
+    .tabs {
+        display: none;
+        flex-direction: column;
+        width: 100%; /* Les onglets prennent toute la largeur */
+        align-items: stretch;
+        margin-bottom: 10px; /* Moins d'espace sous les onglets */
+    }
+
+    /* Bouton de menu déroulant */
+    .dropdown {
+        display: block;
+        background-color: #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        width: 100%; /* Prend toute la largeur sur mobile */
+        margin: 0;
+        transition: background 0.3s;
+        opacity: 0.8;
+    }
+
+    .dropdown:hover {
+        background-color: #aaa;
+        opacity: 1;
+    }
+
+    /* Liste des catégories déroulantes */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        margin-top: 5px;
+    }
+
+    .dropdown-content .tab {
+        padding: 12px;
+        background-color: #fff;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dropdown-content .tab:hover {
+        background-color: #eee;
+    }
+
+    /* Afficher la liste déroulante lorsque le bouton est cliqué */
+    .dropdown.active + .dropdown-content {
+        display: block;
+    }
+}
+
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
